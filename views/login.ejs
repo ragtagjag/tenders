@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="Untitled.css" rel="stylesheet" type="text/css">
+    </head><body>
+        <div class="cover">
+            <div class="background-image-fixed cover-image" style="background-image : url('bg1.png')"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1 class="text-inverse text-left">proTender</h1>
+                        <p class="text-inverse text-left">
+                            <br>Ireland's only Private Sector Tender Procurement Service
+                            <br>
+                            <br>
+                        </p>
+                        <div class="container">
+                            <div class="row text-center">
+                                <div class="col-md-1 text-left">
+                                    <a class="btn btn btn-lg" data-toggle="modal" data-target="#loginmodal">Log In</a>
+                                </div>
+                                <div class="col-md-1 text-left">
+                                    <a class="btn btn btn-lg" data-toggle="modal" data-target="#applymodal">Apply</a>
+                                </div>
+                                <div class="col-md-1 text-left">
+                                    <a class="btn btn btn-lg" data-toggle="modal" data-target="#aboutmodal">About</a>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fade modal" id="loginmodal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                            <% if(locals.error) { %>
+                                <div class="alert alert-danger"><%= error %></div>
+                            <% } %>
+                            <% if(locals.success) { %>
+                                <div class="alert alert-success"><%= success %></div>
+                            <% } %>
+                        <h2 class="text-left text-muted">Log In</h2>
+                        <p><br></p><form method="post" class="form-horizontal text-left" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control input-sm" name="username" id="username" placeholder="Username" value="<%= locals.username || '' %>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control input-sm" id="password" name="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm col-sm-2">
+                                    <button type="submit" class="btn btn-lg">Log In</button>
+                                </div>
+                                <div class="col-sm col-sm-2">
+                                    <button class="btn btn-lg" data-toggle="modal" data-target="#loginmodal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fade modal" id="applymodal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h2 class="text-left text-muted">Membership Application</h2>
+                        <p class="text-left text-muted"><br>Please sign up with your company email address. We will verify all new
+                            applications</p>
+                        <form class="form-horizontal text-left" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="Password Repeated">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Company Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Position">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Company Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Company Phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm col-sm-2">
+                                    <button class="btn btn-lg">Apply</button>
+                                </div>
+                                <div class="col-sm col-sm-2">
+                                    <button class="btn btn-lg" data-toggle="modal" data-target="#applymodal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fade modal text-left" id="aboutmodal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="col-md-12 text-left">
+                            <h2 class="text-muted">About</h2>
+                            <h6 class="text-left">
+                                <br>
+                                <br>
+                                <br>Some text here about this tender farce
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                            </h6>
+                            <button class="btn btn-lg" data-toggle="modal" data-target="#aboutmodal">OK</button>
+                        </div>
+                        <form class="form-horizontal text-left" role="form"></form>
+                        <a><i class="fa fa-5x fa-fw fa-twitter"></i></a>
+                        <a><i class="fa fa-5x fa-fw fa-github"></i></a>
+                        <a><i class="fa fa-5x fa-fw fa-instagram"></i></a>
+                        <a><i class="fa fa-5x fa-fw fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+</body></html>
