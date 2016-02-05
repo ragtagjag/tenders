@@ -1,18 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Lato');
 /*!
- * Default theme for Pingendo 
- * Homepage: http://pingendo.com  
- * Copyright 2015 Pingendo 
- * Licensed under MIT 
- * Based on Bootstrap v3.3.4
+ * Author: Neil Clancy;
+ * q3p1.com Web Design
 */
-/* Add custom CSS classes here 
- * 
- * img {
- *   box-shadow : 0px 0px 10px black !important;
- * }
-*/
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -26,7 +17,7 @@ aside,
 details,
 figcaption,
 figure,
-footer,
+footer
 header,
 hgroup,
 main,
@@ -5732,11 +5723,12 @@ button.close {
 .modal-dialog {
   position: relative;
   margin: 0px;
+  height: 100%;
 }
 .modal-content {
   display: flex;
   align-items: center;
-  background-color: #29292D;
+  background-color: #232B2F;
   opacity: 0.9;
   border: 0;
   height: 100%;
@@ -5759,7 +5751,7 @@ button.close {
   filter: alpha(opacity=0);
 }
 .modal-backdrop.in {
-  opacity: 0.2;
+  opacity: 0.35;
   filter: alpha(opacity=50);
 }
 .modal-header {
@@ -6772,4 +6764,3 @@ body {
 .cover .cover-image.cover-image-fixed {
   background-attachment: fixed;
 }
-/* PINGENDO COMMENT DO NOT REMOVE */
