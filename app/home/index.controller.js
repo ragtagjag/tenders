@@ -5,10 +5,11 @@
         .module('app')
         .controller('Home.IndexController', Controller);
 
-    function Controller(UserService) {
+    function Controller(UserService, PostService) {
         var vm = this;
 
         vm.user = null;
+        vm.posts = null;
 
         initController();
 
@@ -17,6 +18,8 @@
             UserService.GetCurrent().then(function (user) {
                 vm.user = user;
             });
+            
+            vm.posts = PostService.GetAll();
         }
     }
 
