@@ -18,6 +18,24 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'home' }
             })
+            .state('tenders', {
+                url: '/',
+                templateUrl: 'tenders/index.html',
+                controller: 'Tenders.IndexController',
+                controllerAs: 'vm',
+                data: { activeTab: 'tenders' }
+            })
+            .state('tenders.tenderId', {
+                url: '^/tenders/:content',
+                views: {
+                    '@': {
+                            templateUrl: 'tenderId/index.html',
+                            controller: 'TenderId.IndexController',
+                            controllerAs: 'vm',
+                            data: { activeTab: 'tenders' }
+                        }
+                    }
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'account/index.html',

@@ -2,7 +2,7 @@
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(config.connectionString);
-var usersDb = db.get('users');
+var tendersDb = db.get('tenders');
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -10,25 +10,26 @@ var Q = require('q');
 
 var service = {};
 
-service.authenticate = authenticate;
-service.getById = getById;
-service.create = create;
+service.getAllposts = getAllposts;
+
+/* Services not yet available
+
 service.update = update;
 service.delete = _delete;
-
+*/
 module.exports = service;
 
-function authenticate(username, password) {
-    var deferred = Q.defer();
+function getAllposts() {
+
+    var posts = [];
+    posts.push()
+
+    /*var deferred = Q.defer();
 
     usersDb.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err);
 
-        if (user && !user.active) {
-            console.log("User inactive, please complete signup process via email");
-        }
-
-        if (user && user.active && bcrypt.compareSync(password, user.hash)) {
+        if (user && bcrypt.compareSync(password, user.hash)) {
             // authentication successful
             deferred.resolve(jwt.sign({ sub: user._id }, config.secret));
         } else {
@@ -37,26 +38,9 @@ function authenticate(username, password) {
         }
     });
 
-    return deferred.promise;
+    return deferred.promise;*/
 }
 
-function getById(_id) {
-    var deferred = Q.defer();
-
-    usersDb.findById(_id, function (err, user) {
-        if (err) deferred.reject(err);
-
-        if (user) {
-            // return user (without hashed password)
-            deferred.resolve(_.omit(user, 'hash'));
-        } else {
-            // user not found
-            deferred.resolve();
-        }
-    });
-
-    return deferred.promise;
-}
 
 function create(userParam) {
     var deferred = Q.defer();

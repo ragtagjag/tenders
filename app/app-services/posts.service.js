@@ -9,10 +9,9 @@
         var service = {};
 
         service.GetAll = GetAll;
-
-        /*
-
         service.GetById = GetById;
+
+         /* No yet available
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
@@ -26,7 +25,8 @@
                 "title" : "Test 1",
                 "content" : "This is Test 1",
                 "date" : "5 Feb 2016",
-                "user" : "Oblong Shcism"
+                "user" : "Oblong Shcism",
+                "deadline" : ""
             },
             {
                 "title" : "Test 2",
@@ -43,43 +43,43 @@
             {
                 "title" : "Test 4",
                 "content" : " This is test  4",
-                "date" : "5 Feb 2016",
+                "date" : "1 Feb 2016",
                 "user" : "Orangutan Vestige"
             },
             {
                 "title" : "Test 5",
                 "content" : "This is now the fifth of our test posts",
-                "date" : "",
+                "date" : "29 Jan 2016",
                 "user" : "Vicarious Dialect"
             },
             {
                 "title" : "Test 6",
                 "content" : " This is test 26",
-                "date" : "",
+                "date" : "27 Jan 2016",
                 "user" : "Burned Vision"
             },
             {
                 "title" : "Test 7",
                 "content" : "This is now the fucking seventh of our test posts",
-                "date" : "",
+                "date" : "20 Jan 2016",
                 "user" : "Romp Stomper"
             },
             {
                 "title" : "Test 2",
                 "content" : " This is test 2",
-                "date" : "",
+                "date" : "8 Jan 2016",
                 "user" : "Bear Brigade"
             },
             {
                 "title" : "Test 9",
                 "content" : "This is now the third of our test posts",
-                "date" : "",
+                "date" : "4 Jan 2016",
                 "user" : "Marble Launch"
             },
             {
                 "title" : "Test 10",
                 "content" : "The last and least test, fucking test TEN",
-                "date" : "12/12/2015",
+                "date" : "29 Dec 2015",
                 "user" : "Bronze Sanctity"
             }
             ];
@@ -87,7 +87,30 @@
             return posts;
         }
 
+        function GetById(){
+            return {
+                "title" : "Test 1",
+                "content" : "This is Test 1",
+                "date" : "5 Feb 2016",
+                "user" : "Oblong Shcism",
+                "deadline" : ""
+            };
+        }
 
+        function GetTenderId(_id) {
+            return $http.get('/api/tender/' + _id).then(handleSuccess, handleError);
+        }
+
+        
+        // private functions
+
+        function handleSuccess(res) {
+            return res.data;
+        }
+
+        function handleError(res) {
+            return $q.reject(res.data);
+        }
     }
 
 })();

@@ -1,5 +1,7 @@
 ﻿body {
     padding: 20px 0;
+    color: #343433;
+    background-color: #fffcfa;
 }
 
 .flash-message {
