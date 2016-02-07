@@ -23,14 +23,17 @@ module.exports = service;
 function getByTitle(title) {
     var deferred = Q.defer();
     console.log("Hi now guy - " + title);
-    tendersDb.find("{title: "+ title +"}", function (err, post) {
+    tendersDb.find({title: "megatown"}, function (err, post) {
         if (err) deferred.reject(err);
 
         if (post) {
             // return user (without hashed password)
+            console.log("success");
+            console.log(post);
             deferred.resolve(post);
         } else {
             // user not found
+            console.log("fail");
             deferred.resolve();
         }
     });

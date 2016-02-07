@@ -9,7 +9,7 @@
         var vm = this;
 
         vm.user = null;
-        vm.posts = null;
+        vm.post = {};
 
         initController();
 
@@ -20,8 +20,11 @@
             });
             console.log("hi");
             
-            vm.post = PostService.GetByTitle("megatown");
-            console.log(vm.post);
+            PostService.GetByTitle("megatown").then(function (post){
+                console.log(JSON.stringify(post));
+                vm.post = (post[0]);
+                console.log(vm.post.title);
+            });          
 
         }
     }

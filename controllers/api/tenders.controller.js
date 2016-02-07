@@ -12,8 +12,9 @@ module.exports = router;
 
 
 function getTender(req, res) {
-    console.log(req.title);
-    tenderService.getByTitle(req.title.sub)
+    console.log(req);
+    console.log(res);
+    tenderService.getByTitle(req.title)
         .then(function (title) {
             if (title) {
                 res.send(title);
