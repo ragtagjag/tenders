@@ -22,7 +22,7 @@ module.exports = service;
 
 function getByTitle(title) {
     var deferred = Q.defer();
-
+    console.log("Hi now guy - " + title);
     tendersDb.find("{title: "+ title +"}", function (err, post) {
         if (err) deferred.reject(err);
 

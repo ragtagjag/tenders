@@ -26,7 +26,7 @@
                 data: { activeTab: 'tenders' }
             })
             .state('tenders.tenderId', {
-                url: '^/tenders/:content',
+                url: '^/tenders/:vm.title',
                 views: {
                     '@': {
                             templateUrl: 'tenderId/index.html',

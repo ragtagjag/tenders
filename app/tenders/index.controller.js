@@ -19,7 +19,7 @@
                 vm.user = user;
             });
             
-            vm.posts = PostService.GetByTitle("Test 1");
+            vm.posts = PostService.GetAll();
         }
     }
 

@@ -20,7 +20,7 @@
             });
             console.log("hi");
             
-            vm.post = PostService.GetById();
+            vm.post = PostService.GetByTitle("megatown");
             console.log(vm.post);
 
         }

@@ -4,7 +4,7 @@ var router = express.Router();
 var tenderService = require('services/tender.service');
 
 // routes
-router.get('tender/:id', getTender);
+router.get('/:id', getTender);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
@@ -18,7 +18,7 @@ function getTender(req, res) {
             if (title) {
                 res.send(title);
             } else {
-                res.sendStatus(404);
+                res.sendStatus(401);
             }
         })
         .catch(function (err) {
