@@ -11,6 +11,7 @@ var Q = require('q');
 var service = {};
 
 service.getAllposts = getAllposts;
+service.getByTitle = getByTitle;
 
 /* Services not yet available
 
@@ -18,6 +19,24 @@ service.update = update;
 service.delete = _delete;
 */
 module.exports = service;
+
+function getByTitle(title) {
+    var deferred = Q.defer();
+
+    tendersDb.find("{title: "+ title +"}", function (err, post) {
+        if (err) deferred.reject(err);
+
+        if (post) {
+            // return user (without hashed password)
+            deferred.resolve(post);
+        } else {
+            // user not found
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
 
 function getAllposts() {
 

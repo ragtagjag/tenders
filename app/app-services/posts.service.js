@@ -10,6 +10,7 @@
 
         service.GetAll = GetAll;
         service.GetById = GetById;
+        service.GetByTitle = GetByTitle;
 
          /* No yet available
         service.Create = Create;
@@ -97,8 +98,8 @@
             };
         }
 
-        function GetTenderId(_id) {
-            return $http.get('/api/tender/' + _id).then(handleSuccess, handleError);
+        function GetByTitle(title) {
+            return $http.get('/api/tender/' + title).then(handleSuccess, handleError);
         }
 
         
