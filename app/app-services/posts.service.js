@@ -20,6 +20,7 @@
 
         return service;
 
+        /*
         function GetAll() {
             var posts = [
             {
@@ -86,7 +87,7 @@
             ];
 
             return posts;
-        }
+        }*/
 
         function GetById(){
             return {
@@ -100,6 +101,10 @@
 
         function GetByTitle(title) {
             return $http.get('/api/tender/' + title).then(handleSuccess, handleError);
+        }
+
+        function GetAll(){
+            return $http.get('/api/tender/getAll').then(handleSuccess, handleError);
         }
 
         

@@ -4,12 +4,27 @@ var router = express.Router();
 var tenderService = require('services/tender.service');
 
 // routes
+router.get('/getAll', getAll)
 router.get('/:id', getTender);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
 module.exports = router;
 
+function getAll(req, res){
+    console.log("have i got here??");
+    tenderService.getAllPosts()
+        .then(function (posts) {
+            if (posts) {
+                res.send(posts);
+            } else {
+                res.sendStatus(401);
+            }
+        })
+        .catch(function (err) {
+            res.status(403).send(err);
+        });
+}
 
 function getTender(req, res) {
     console.log(req);

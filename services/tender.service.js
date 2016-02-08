@@ -10,7 +10,7 @@ var Q = require('q');
 
 var service = {};
 
-service.getAllposts = getAllposts;
+service.getAllPosts = getAllPosts;
 service.getByTitle = getByTitle;
 
 /* Services not yet available
@@ -41,12 +41,31 @@ function getByTitle(title) {
     return deferred.promise;
 }
 
-function getAllposts() {
+function getAllPosts() {
+    var deferred = Q.defer();
+    tendersDb.find({}, function (err, posts) {
+        if (err) deferred.reject(err);
 
+        if (posts) {
+            // return user (without hashed password)
+            deferred.resolve(posts);
+        } else {
+            // user not found
+            console.log("fail");
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+
+}
+    
+
+    /*
     var posts = [];
     posts.push()
 
-    /*var deferred = Q.defer();
+    var deferred = Q.defer();
 
     usersDb.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err);
@@ -61,7 +80,7 @@ function getAllposts() {
     });
 
     return deferred.promise;*/
-}
+
 
 
 function create(userParam) {
