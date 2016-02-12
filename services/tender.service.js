@@ -76,19 +76,17 @@ function createTender(post){
                 // already exists
                 deferred.reject('Title already exists');
             } else {
-                createNewTender(post);
+                createNewTender();
             }
         });
 
-    function createNewTender(thisnewpost) {
+    function createNewTender() {
         // set user object to userParam without the cleartext password
         console.log("Am i here????? :D: ");
-        var newPost = thisnewpost;
-        console.log("newPost" + newPost);
         console.log("post" + JSON.stringify(post));
 
         tendersDb.insert(
-            newPost,
+            post,
             function (err, doc) {
                 if (err) deferred.reject(err);
 
