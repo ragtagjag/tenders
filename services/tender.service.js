@@ -12,6 +12,7 @@ var service = {};
 
 service.getAllPosts = getAllPosts;
 service.getByTitle = getByTitle;
+service.createTender = createTender;
 
 /* Services not yet available
 
@@ -22,8 +23,8 @@ module.exports = service;
 
 function getByTitle(title) {
     var deferred = Q.defer();
-    console.log("Hi now guy - " + title);
-    tendersDb.find({title: "megatown"}, function (err, post) {
+    console.log("Tender Exp Service - " + title);
+    tendersDb.find({title: title}, function (err, post) {
         if (err) deferred.reject(err);
 
         if (post) {
@@ -47,10 +48,10 @@ function getAllPosts() {
         if (err) deferred.reject(err);
 
         if (posts) {
-            // return user (without hashed password)
+            // return posts
             deferred.resolve(posts);
         } else {
-            // user not found
+            // no posts found
             console.log("fail");
             deferred.resolve();
         }
@@ -60,6 +61,9 @@ function getAllPosts() {
 
 }
     
+function createTender(){
+    tendersDb.insert();
+}
 
     /*
     var posts = [];

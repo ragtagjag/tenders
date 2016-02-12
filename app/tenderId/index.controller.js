@@ -5,7 +5,7 @@
         .module('app')
         .controller('TenderId.IndexController', Controller);
 
-    function Controller(UserService, PostService) {
+    function Controller($scope, $stateParams, UserService, PostService) {
         var vm = this;
 
         vm.user = null;
@@ -19,11 +19,11 @@
                 vm.user = user;
             });
             console.log("hi");
-            
-            PostService.GetByTitle("megatown").then(function (post){
-                console.log(JSON.stringify(post));
+            console.log("USerParams" + $stateParams.title);
+            PostService.GetByTitle($stateParams.title).then(function (post){
+                console.log("PostService.GetByTitle"+JSON.stringify(post));
                 vm.post = (post[0]);
-                console.log(vm.post.title);
+                console.log("PostService.GetByTitle.title"+vm.post.title);
             });          
 
         }

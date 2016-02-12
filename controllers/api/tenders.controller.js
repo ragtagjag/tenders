@@ -27,9 +27,8 @@ function getAll(req, res){
 }
 
 function getTender(req, res) {
-    console.log(req);
-    console.log(res);
-    tenderService.getByTitle(req.title)
+    console.log("********************************************TITLE  "+req.params.id); 
+    tenderService.getByTitle(req.params.id)
         .then(function (title) {
             if (title) {
                 res.send(title);
@@ -40,6 +39,10 @@ function getTender(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function createTender(req, res) {
+    //tenderService.createTender(req.body)
 }
 
 function updateUser(req, res) {

@@ -19,18 +19,28 @@
                 data: { activeTab: 'home' }
             })
             .state('tenders', {
-                url: '/',
+                url: '/tenders',
                 templateUrl: 'tenders/index.html',
                 controller: 'Tenders.IndexController',
                 controllerAs: 'vm',
                 data: { activeTab: 'tenders' }
             })
             .state('tenders.tenderId', {
-                url: '^/tenders/:vm.title',
+                url: '^/tenders/:title',
                 views: {
                     '@': {
                             templateUrl: 'tenderId/index.html',
                             controller: 'TenderId.IndexController',
+                            controllerAs: 'vm',
+                            data: { activeTab: 'tenders' }
+                        }
+                    }
+            }).state('tenders.create', {
+                url: '/tenders/create',
+                views: {
+                    '@': {
+                            templateUrl: 'create/index.html',
+                            controller: 'Create.IndexController',
                             controllerAs: 'vm',
                             data: { activeTab: 'tenders' }
                         }
