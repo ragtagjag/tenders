@@ -40,8 +40,9 @@
             return $http.get('/api/tender/getAll').then(handleSuccess, handleError);
         }
 
-        function CreateTender(title){
-
+        function CreateTender(tender){
+            console.log("create tender PostService"+ JSON.stringify(tender) + tender);
+            return $http.post('/api/tender/createTender', tender).then(handleSuccess, handleError);
         }
         
         // private functions

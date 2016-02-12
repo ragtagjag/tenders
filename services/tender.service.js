@@ -61,8 +61,42 @@ function getAllPosts() {
 
 }
     
-function createTender(){
-    tendersDb.insert();
+function createTender(post){
+    var deferred = Q.defer();
+    // validation
+    console.log("SERVICE - POST.TITLE" + post.title);
+    tendersDb.findOne(
+        { title: post.title },
+        function (err, post) {
+            if (err){
+             deferred.reject(err);
+            }
+
+            if (post) {
+                // already exists
+                deferred.reject('Title already exists');
+            } else {
+                createNewTender(post);
+            }
+        });
+
+    function createNewTender(thisnewpost) {
+        // set user object to userParam without the cleartext password
+        console.log("Am i here????? :D: ");
+        var newPost = thisnewpost;
+        console.log("newPost" + newPost);
+        console.log("post" + JSON.stringify(post));
+
+        tendersDb.insert(
+            newPost,
+            function (err, doc) {
+                if (err) deferred.reject(err);
+
+                deferred.resolve();
+            });
+    }
+
+    return deferred.promise;
 }
 
     /*

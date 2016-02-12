@@ -3,9 +3,13 @@ var express = require('express');
 var router = express.Router();
 var tenderService = require('services/tender.service');
 
+//middleware
+
+
 // routes
 router.get('/getAll', getAll)
 router.get('/:id', getTender);
+router.post('/createTender', createTender);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
@@ -42,7 +46,13 @@ function getTender(req, res) {
 }
 
 function createTender(req, res) {
-    //tenderService.createTender(req.body)
+    console.log("I have started the createTender func...");
+    console.log(req.body);
+    console.log("USER :::: "+req.body.user);
+    tenderService.createTender(req.body)
+        .then(function (){
+            // do something here 
+        });
 }
 
 function updateUser(req, res) {

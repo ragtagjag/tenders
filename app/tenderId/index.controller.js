@@ -23,7 +23,7 @@
             PostService.GetByTitle($stateParams.title).then(function (post){
                 console.log("PostService.GetByTitle"+JSON.stringify(post));
                 vm.post = (post[0]);
-                console.log("PostService.GetByTitle.title"+vm.post.title);
+                console.log("PostService Title "+vm.post.title);
             });          
 
         }

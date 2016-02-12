@@ -11,7 +11,7 @@
         var vm = this;
 
         vm.user = null;
-        vm.tender;
+        vm.tender = null;
         vm.createTender = createTender;
 
         initController();
@@ -25,12 +25,15 @@
         }
 
         function createTender() {
+            vm.tender.user = vm.user.username;
+            vm.tender.date = new Date();
+            console.log(JSON.stringify(vm.tender));
             PostService.CreateTender(vm.tender)
                 .then(function () {
                     FlashService.Success('Tender created! :D');
                 })
                 .catch(function (error) {
-                    FlashService.Error(error);
+                    FlashService.Error("Aw Shucks folks, no dice this time :D");
                 });
         }
     }
