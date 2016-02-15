@@ -12,6 +12,7 @@
         service.GetById = GetById;
         service.GetByTitle = GetByTitle;
         service.CreateTender = CreateTender
+        service.deleteTender = deleteTender
 
          /* No yet available
         service.Create = Create;
@@ -44,11 +45,16 @@
             console.log("create tender PostService"+ JSON.stringify(tender) + tender);
             return $http.post('/api/tender/createTender', tender).then(handleSuccess, handleError);
         }
+
+        function deleteTender(tenderId){
+            console.log("tenderId.."+tenderId);
+            return $http.post('/api/tender/deleteTender', tenderId).then(handleSuccess, handleError);
+        }
         
         // private functions
 
         function handleSuccess(res) {
-            console.log("**" + res.data);
+            console.log("**" + JSON.stringify(res.data[0]));
             return res.data;
         }
 

@@ -19,7 +19,11 @@
                 vm.user = user;
             });
             
-            vm.posts = PostService.GetAll();
+            PostService.GetAll().then(function (posts) {
+                
+                console.log(JSON.stringify(posts));
+                vm.posts = posts;
+            });
         }
     }
 

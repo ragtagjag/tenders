@@ -1,16 +1,14 @@
 ﻿<h1>Tenders List</h1>
 
-<h2><a ui-sref="tenders.create">Create Tender</a></h2>
-<div ng-repeat="post in vm.posts" class="col-md-12">
+<h3><a ui-sref="tenders.create">Create Tender</a></h3>
+<div ng-repeat="post in vm.posts | orderBy:'-post.date'" class="col-md-12">
     <ul class="media-list">
         <li class="media">
             <a class="pull-left" href="#"><img class="center-block img-circle img-responsive" src="app-content/images/pic1.jpg" height="64" width="64"></a>
             <div class="media-body">
                 <h4 class="media-heading">
                     <b><a ui-sref="tenders.tenderId({title: post.title})">{{post.title}}</b>&nbsp;</a>| {{post.user}}</h4>
-                <p>
-                    <img src="app-content/images/rating1.png" style="height:20px;">
-                    <br>{{post.date}}</p>
+                <p>{{post.date| date:'medium'}}</p>
                 <p>{{post.content}}</p>
             </div>
         </li>

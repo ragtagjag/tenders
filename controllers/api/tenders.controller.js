@@ -11,7 +11,7 @@ router.get('/getAll', getAll)
 router.get('/:id', getTender);
 router.post('/createTender', createTender);
 router.put('/:_id', updateUser);
-router.delete('/:_id', deleteUser);
+router.delete('/deleteTender', deleteTender);
 
 module.exports = router;
 
@@ -71,11 +71,11 @@ function updateUser(req, res) {
         });
 }
 
-function deleteUser(req, res) {
+function deleteTender(req, res) {
     var userId = req.user.sub;
     if (req.params._id !== userId) {
         // can only delete own account
-        return res.status(401).send('You can only delete your own account');
+        return res.status(401).send('You can only delete your own posts!');
     }
 
     tenderService.delete(userId)

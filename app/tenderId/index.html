@@ -1,5 +1,7 @@
 ﻿<h1>
-{{vm.post.title}}</h1>
+{{vm.post.title}}</h1><button class="btn btn-primary" ng-click="vm.saveUser()">Edit</button>
+            <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
+            <br><br>
 
 <div class="col-md-12">
     <ul class="media-list">
@@ -10,7 +12,7 @@
                     <b> {{vm.post.user}}</h4>
                 <p>
                     <img src="app-content/images/rating1.png" style="height:20px;">
-                    <br>{{vm.post.date}}</p>
+                    <br>{{vm.post.date | date:'medium'}}</p>
                 <p>{{vm.post.content}}</p>
             </div>
         </li>

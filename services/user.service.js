@@ -82,6 +82,14 @@ function create(userParam) {
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
 
+        // set empty variables
+        user.active = false;
+        user.tendersApplied = [];
+        user.tendersOwned = [];
+        user.tendersWatched = [];
+        user.mailboxes = [];
+        
+
         usersDb.insert(
             user,
             function (err, doc) {

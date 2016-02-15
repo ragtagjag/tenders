@@ -25,7 +25,8 @@
         }
 
         function createTender() {
-            vm.tender.user = vm.user.username;
+            vm.tender.user = vm.user.firstName + " " + vm.user.lastName;
+            vm.tender.userId = vm.user._id;
             vm.tender.date = new Date();
             console.log(JSON.stringify(vm.tender));
             PostService.CreateTender(vm.tender)

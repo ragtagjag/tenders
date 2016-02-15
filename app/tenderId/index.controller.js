@@ -11,6 +11,8 @@
         vm.user = null;
         vm.post = {};
 
+        vm.deleteTender = deleteTender;
+
         initController();
 
         function initController() {
@@ -26,6 +28,13 @@
                 console.log("PostService Title "+vm.post.title);
             });          
 
+        }
+
+        function deleteTender() {
+            console.log("printing id... "+vm.post._id);
+            PostService.deleteTender(vm.post._id).then(function (result){
+                console.log(result);
+            })
         }
     }
 

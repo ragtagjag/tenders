@@ -1,3 +1,66 @@
-﻿<h1>Hi {{vm.user.firstName}}!!</h1>
+﻿<h1>Tender Admin Site</h1>
 
-
+Hi {{vm.user.firstName}}<br><br>
+ <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="alert alert-dismissable alert-success">
+              <b>Latest</b>
+              <br>
+            </div>
+            <ul class="media-list">
+              <li ng-repeat="post in vm.posts | orderBy:'-post.date' | limitTo:3" class="media">
+                <div class="media-body">
+                  <h4 class="media-heading">{{post.title}}</h4>
+                  <p>{{post.date | date: 'short'}} | {{post.content}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="alert alert-dismissable alert-warning">
+              <b>Watched</b>
+              <br>
+            </div>
+            <ul class="media-list">
+              <li ng-repeat="post in vm.posts | watchedFilter:vm.user.tendersWatched | limitTo:3" class="media">
+                <div class="media-body">
+                  <h4 class="media-heading">{{post.title}}</h4>
+                  <p>{{post.date | date: 'short'}} | {{post.content}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="alert alert-dismissable alert-info">
+              <b>Messages</b>
+              <br>
+            </div>
+            <table class="ddd table">
+              <thead>
+                <tr>
+                  <th width="15%">Time</th>
+                  <th>Subject</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12:00</td>
+                  <td>New offer on F1 Track Tender</td>
+                </tr>
+                <tr>
+                  <td>Feb 1</td>
+                  <td>What's the pay for the Management support role?</td>
+                </tr>
+                <tr>
+                  <td>Jan 20</td>
+                  <td>I'm trying to find someone called Larry, can you search your database
+                    and send me his email?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
