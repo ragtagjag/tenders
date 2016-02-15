@@ -25,9 +25,23 @@
         }
 
         function createTender() {
-            vm.tender.user = vm.user.firstName + " " + vm.user.lastName;
-            vm.tender.userId = vm.user._id;
-            vm.tender.date = new Date();
+            vm.tender.creator = {};
+            vm.tender.creator.name = vm.user.firstName + " " + vm.user.lastName;
+            vm.tender.creator.id = vm.user._id;
+            vm.tender.creator.company = vm.user.companyName;
+
+            vm.tender.date_created = new Date();
+            vm.tender.date_updated = new Date();
+
+            vm.tender.questions = [];
+            vm.tender.attachments = [];
+
+            vm.tender.applicants = [];
+            
+            vm.tender.active = true;
+            vm.status = "new";
+
+
             console.log(JSON.stringify(vm.tender));
             PostService.CreateTender(vm.tender)
                 .then(function () {

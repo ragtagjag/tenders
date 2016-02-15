@@ -8,12 +8,23 @@
         <li class="media">
             <a class="pull-left" href="#"><img class="center-block img-circle img-responsive" src="app-content/images/pic1.jpg" height="64" width="64"></a>
             <div class="media-body">
-                <h4 class="media-heading">
-                    <b> {{vm.post.user}}</h4>
-                <p>
-                    <img src="app-content/images/rating1.png" style="height:20px;">
-                    <br>{{vm.post.date | date:'medium'}}</p>
-                <p>{{vm.post.content}}</p>
+                <h3 class="media-heading">
+                    <b>  {{vm.post.creator.company}} </b>| {{vm.post.creator.name}}</h3>
+                <p>{{vm.post.date_created | date:'medium'}} </p>
+                <h4>Summary</h4>
+                <p>{{vm.post.summary}}</p>
+                <h4>Detailed Description</h4>
+                <p>{{vm.post.description}}</p>
+                
+                <h4>Questions</h4>
+                <p>{{vm.post.description}}</p> 
+
+                <h4>Attachments</h4>
+                <p>{{vm.post.description}}</p> 
+
+                <h4>Number of Applicants</h4> 
+                <p>6</p> 
+
             </div>
         </li>
     </ul>

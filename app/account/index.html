@@ -18,6 +18,14 @@
             <input type="password" id="password" class="form-control" ng-model="vm.user.password" />
         </div>
         <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" ng-model="vm.user.email" required />
+        </div>
+        <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" class="form-control" ng-model="vm.user.companyName" required />
+        </div>
+        <div class="form-group">
             <button class="btn btn-primary" ng-click="vm.saveUser()">Save</button>
             <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
         </div>

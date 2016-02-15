@@ -46,6 +46,13 @@
                         }
                     }
             })
+            .state('messages', {
+                url: '/messages',
+                templateUrl: 'messages/index.html',
+                controller: 'Messages.IndexController',
+                controllerAs: 'vm',
+                data: { activeTab: 'messages' }
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'account/index.html',

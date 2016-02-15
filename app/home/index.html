@@ -10,10 +10,10 @@ Hi {{vm.user.firstName}}<br><br>
               <br>
             </div>
             <ul class="media-list">
-              <li ng-repeat="post in vm.posts | orderBy:'-post.date' | limitTo:3" class="media">
+              <li ng-repeat="post in vm.posts | orderBy:'-date_created' | limitTo:3" class="media">
                 <div class="media-body">
                   <h4 class="media-heading">{{post.title}}</h4>
-                  <p>{{post.date | date: 'short'}} | {{post.content}}</p>
+                  <p>{{post.date_created | date: 'short'}} | {{post.summary}}</p>
                 </div>
               </li>
             </ul>
@@ -21,13 +21,14 @@ Hi {{vm.user.firstName}}<br><br>
           <div class="col-md-4">
             <div class="alert alert-dismissable alert-warning">
               <b>Watched</b>
+              {{vm.user.tenderWatched}}
               <br>
             </div>
             <ul class="media-list">
               <li ng-repeat="post in vm.posts | watchedFilter:vm.user.tendersWatched | limitTo:3" class="media">
                 <div class="media-body">
                   <h4 class="media-heading">{{post.title}}</h4>
-                  <p>{{post.date | date: 'short'}} | {{post.content}}</p>
+                  <p>{{post.date_created | date: 'short'}} | {{post.summary}}</p>
                 </div>
               </li>
             </ul>

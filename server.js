@@ -23,6 +23,7 @@ app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
+app.use('/api/messages', require('./controllers/api/message.controller'));
 app.use('/api/tender', require('./controllers/api/tenders.controller'));
 
 // make '/app' default route

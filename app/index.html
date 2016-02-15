@@ -13,6 +13,7 @@
         <ul class="nav nav-tabs">
             <li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">Home</a></li>
             <li ng-class="{active: activeTab === 'tenders'}"><a ui-sref="tenders">Tenders</a></li>
+            <li ng-class="{active: activeTab === 'messages'}"><a ui-sref="messages">Messages</a></li>
             <li ng-class="{active: activeTab === 'account'}"><a ui-sref="account">Account</a></li>
             <li><a href="/login" target="_self">Logout</a></li>
         </ul>
@@ -37,11 +38,13 @@
     <script src="app-services/user.service.js"></script>
     <script src="app-services/posts.service.js"></script>
     <script src="app-services/flash.service.js"></script>
+    <script src="app-services/messages.service.js"></script>
     <script src="app-filters/watchedTender.filter.js"></script>
     <script src="home/index.controller.js"></script>
     <script src="tenders/index.controller.js"></script>
     <script src="tenderId/index.controller.js"></script>
     <script src="create/index.controller.js"></script>
+    <script src="messages/index.controller.js"></script>
     <script src="account/index.controller.js"></script>
 </body>
 </html>
