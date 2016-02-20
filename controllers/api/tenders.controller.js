@@ -12,6 +12,7 @@ router.get('/:id', getTender);
 router.post('/createTender', createTender);
 router.put('/:_id', updateUser);
 router.delete('/deleteTender', deleteTender);
+router.post('/addQuestion/:id', addQuestion);
 
 module.exports = router;
 
@@ -84,5 +85,16 @@ function deleteTender(req, res) {
         })
         .catch(function (err) {
             res.status(400).send(err);
+        });
+}
+
+function addQuestion(req, res){
+        console.log("Lets look at the req body" +req.body.question + " | " + req.params.id);  
+        tenderService.addQuestion(req.body)
+            .then(function () {
+                res.sendStatus(200);
+            })
+            .catch(function (err) {
+                res.status(400).send(err);
         });
 }

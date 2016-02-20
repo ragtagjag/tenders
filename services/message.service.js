@@ -11,6 +11,7 @@ var Q = require('q');
 var service = {};
 
 service.getAllMessages = getAllMessages;
+service.postMessage = postMessage;
 
 /* Services not yet available
 
@@ -19,20 +20,62 @@ service.delete = _delete;
 */
 module.exports = service;
 
-function getAllMessages(thisId) {
+function postMessage(msg){
     var deferred = Q.defer();
-    console.log("Message Service - " + thisId);
-    mailDB.find({_id: thisId}, function (err, mailbox) {
+    console.log(JSON.stringify(msg));
+    mailDB.update({_id: msg.mailbox}, {$push:{
+        inbox: {
+            from: msg.username,
+            sent_date: new Date(),
+            subject: msg.subject,
+            content: msg.content,
+            read: "false"
+        }
+    }
+    }, function (err, doc) {
         if (err) deferred.reject(err);
 
-        if (mailbox) {
+        if (doc) {
+           
+            deferred.resolve(doc);
+        } else {
             
-            console.log("success");
-            console.log(mailbox);
-            deferred.resolve(mailbox);
+            console.log("fail");
+            deferred.reject();
+        }
+    });
+    return deferred.promise;
+}
+
+function getAllMessages(mailboxID, xaxl) {
+    var deferred = Q.defer();
+    console.log("Message Service - " + mailboxID);
+    mailDB.find({_id: mailboxID}, function (err, mailbox) {
+        if (err) {
+            console.log("()error");
+            deferred.reject(err);
+        }
+        if (mailbox) {
+            console.log(JSON.stringify(mailbox));
+            console.log(mailbox[0].pin);
+
+            if (mailbox[0].pin == xaxl) {
+                
+                var newObj = {
+                    inbox:      mailbox[0].inbox,
+                    sentbox:    mailbox[0].sentbox
+                    
+                };
+                console.log("()success" + JSON.stringify(newObj));
+                deferred.resolve(newObj); 
+            } else {
+                console.log("Alert :: Unauthorised attempt to view mailbox");
+                deferred.reject("Not the correct user");
+            }
+            
         } else {
             // user not found
-            console.log("fail");
+            console.log("()fail");
             deferred.resolve();
         }
     });

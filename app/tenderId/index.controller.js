@@ -5,13 +5,18 @@
         .module('app')
         .controller('TenderId.IndexController', Controller);
 
-    function Controller($scope, $stateParams, UserService, PostService) {
+    function Controller($scope, $stateParams, UserService, PostService, MessageService) {
         var vm = this;
 
         vm.user = null;
         vm.post = {};
+        vm.newQuestion = '';
+        vm.newMessage = {};
 
         vm.deleteTender = deleteTender;
+        vm.addToWatched = addToWatched;
+        vm.askQuestion = askQuestion;
+        vm.sendMessage = sendMessage;
 
         initController();
 
@@ -35,6 +40,30 @@
             PostService.deleteTender(vm.post._id).then(function (result){
                 console.log(result);
             })
+        }
+
+        function addToWatched(){
+            vm.user.tendersWatched.push(vm.post._id);
+            UserService.Update(vm.user).then(function (result){
+                console.log("result:"+result);
+            })
+        }
+
+        function askQuestion(){
+            console.log("trying..."+vm.newQuestion);
+            PostService.askQuestion(vm.newQuestion, vm.post._id).then(function (result){
+                console.log(result);
+                vm.newQuestion = '';
+            })
+        }
+
+        function sendMessage(){
+            vm.newMessage.mailbox = vm.post.creator.mail;
+            vm.newMessage.sender = vm.user.username;
+            MessageService.SendMessage(vm.newMessage)
+                .then(function (result){
+                    console.log("send Message: "+result);
+                })
         }
     }
 

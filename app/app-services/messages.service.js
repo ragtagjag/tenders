@@ -9,7 +9,7 @@
         var service = {};
 
         service.GetAll = GetAll;
-       
+        service.SendMessage = SendMessage;
 
          /* No yet available
         service.Create = Create;
@@ -20,14 +20,21 @@
         return service;
 
 
-        function GetAll(thisId){
-            return $http.get('/api/messages/' + thisId).then(handleSuccess, handleError);
+        function GetAll(thisId, rp){
+            var newObj = {xaxl: rp};
+            return $http.post('/api/messages/' + thisId, newObj).then(handleSuccess, handleError);
         }
         
+        function SendMessage(msg){
+            console.log(JSON.stringify(msg));
+            return $http.post('/api/messages/send', msg).then(handleSuccess, handleError);
+        }
+
+
         // private functions
 
         function handleSuccess(res) {
-            console.log("**" + JSON.stringify(res.data[0]));
+            console.log("**" + JSON.stringify(res.data));
             return res.data;
         }
 

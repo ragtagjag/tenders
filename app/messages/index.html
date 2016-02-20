@@ -6,9 +6,9 @@
             <a class="pull-left" href="#"><img class="center-block img-circle img-responsive" src="app-content/images/pic1.jpg" height="64" width="64"></a>
             <div class="media-body">
                 <h4 class="media-heading">
-                    <b><a ui-sref="">{{message.subject}}</b>&nbsp;</a>| {{message.from}}</h4>
-                <p>{{message.sent_date| date:'medium'}}</p>
-                <p>{{message.content}}</p>
+                    <span ng-if="(message.read=='false')" class="label label-primary">Unread</span><b>&nbsp;{{message.subject}}</b>&nbsp;| {{message.from}}</h4>
+                    <p>{{message.sent_date| date:'short'}}</p>
+                    <p>{{message.content}}</p>
             </div>
         </li>
     </ul>

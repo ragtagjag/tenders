@@ -11,8 +11,9 @@
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByTitle = GetByTitle;
-        service.CreateTender = CreateTender
-        service.deleteTender = deleteTender
+        service.CreateTender = CreateTender;
+        service.deleteTender = deleteTender;
+        service.askQuestion = addQuestion;
 
          /* No yet available
         service.Create = Create;
@@ -49,6 +50,15 @@
         function deleteTender(tenderId){
             console.log("tenderId.."+tenderId);
             return $http.post('/api/tender/deleteTender', tenderId).then(handleSuccess, handleError);
+        }
+
+        function addQuestion(newQuestion, tid){
+            console.log("question"+newQuestion+"|"+tid);
+            var qObj = {
+                question: newQuestion,
+                id: tid
+             };
+            return $http.post('/api/tender/addQuestion/'+tid, qObj).then(handleSuccess, handleError);
         }
         
         // private functions

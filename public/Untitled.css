@@ -6764,3 +6764,6 @@ body {
 .cover .cover-image.cover-image-fixed {
   background-attachment: fixed;
 }
+.questionBg{
+  background-color: #E2E3FF;
+}

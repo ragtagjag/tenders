@@ -13,6 +13,7 @@ var service = {};
 service.getAllPosts = getAllPosts;
 service.getByTitle = getByTitle;
 service.createTender = createTender;
+service.addQuestion = addQuestion;
 
 /* Services not yet available
 
@@ -219,4 +220,19 @@ function _delete(_id) {
         });
 
     return deferred.promise;
+}
+
+function addQuestion(body){
+    var deferred = Q.defer();
+    console.log(body.question + " | " + body.id);
+    tendersDb.update({_id: body.id}, {$push: {questions: {
+                            title: body.question,
+                            answers : []
+                        }}}, function (err, doc) {
+                            if (err) deferred.reject(err);
+
+                            deferred.resolve();
+                        })
+                     return deferred.promise;
+
 }

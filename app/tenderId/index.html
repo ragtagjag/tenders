@@ -1,5 +1,5 @@
 ﻿<h1>
-{{vm.post.title}}</h1><button class="btn btn-primary" ng-click="vm.saveUser()">Edit</button>
+{{vm.post.title}}</h1><button class="btn btn-primary" ng-click="vm.addToWatched()">Watch</button>
             <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
             <br><br>
 
@@ -13,15 +13,48 @@
                 <p>{{vm.post.date_created | date:'medium'}} </p>
                 <h4>Summary</h4>
                 <p>{{vm.post.summary}}</p>
+                <br>
                 <h4>Detailed Description</h4>
                 <p>{{vm.post.description}}</p>
-                
+                <br>
                 <h4>Questions</h4>
-                <p>{{vm.post.description}}</p> 
-
-                <h4>Attachments</h4>
-                <p>{{vm.post.description}}</p> 
-
+                <ul class="media-list">
+                    <li class="media" ng-repeat="question in vm.post.questions">
+                     <div class="alert alert-warning">
+                        <strong>{{question.title}}</strong></div> 
+                        <ul>
+                             <li class="media" ng-repeat="answer in question.answers">
+                                 <h5>{{answer}}</h5>    
+                            </li>
+                        </ul>  
+                     
+                    </li>
+                </ul>
+                <strong>Ask Question</strong>
+                        <form method="post">
+                            <div class="form-group">
+                                <input type="text" id="newQuestion" class="form-control" ng-model="vm.newQuestion" required />
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" ng-click="vm.askQuestion()">Save</button>
+                            </div>
+                    </form>
+                <br>
+                <h4>Send Message</h4>
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="text" id="subject" class="form-control" placeholder="Subject" ng-model="vm.newMessage.subject" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="newQuestion" class="form-control" placeholder="Message text" ng-model="vm.newMessage.content" required />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" ng-click="vm.sendMessage()">Save</button>
+                        </div>
+                    </form>
+                <br>
+                <h4>Attachments</h4> 
+                <br>
                 <h4>Number of Applicants</h4> 
                 <p>6</p> 
 

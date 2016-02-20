@@ -33,5 +33,5 @@ app.get('/', function (req, res) {
 
 // start server
 var server = app.listen(3000, function () {
-    console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
+    console.log('Q3P1 :: Tender Site :: Currently active on port ' + server.address().port);
 });

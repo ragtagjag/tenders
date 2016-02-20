@@ -35,7 +35,8 @@
                             data: { activeTab: 'tenders' }
                         }
                     }
-            }).state('tenders.create', {
+            })
+            .state('tenders.create', {
                 url: '/tenders/create',
                 views: {
                     '@': {

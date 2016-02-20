@@ -134,6 +134,9 @@ function update(_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
+            companyName: userParam.companyName,
+            email: userParam.email,
+            tendersWatched: userParam.tendersWatched
         };
 
         // update password if it was entered
