@@ -26,6 +26,7 @@ function authenticate(username, password) {
 
         if (user && !user.active) {
             deferred.reject("User inactive, please complete signup process via email");
+            return deferred.promise;
         }
 
         if (user && user.active && bcrypt.compareSync(password, user.hash)) {
