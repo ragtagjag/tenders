@@ -1,5 +1,5 @@
 ﻿{
-    "connectionString": "localhost:27017/protender",
+    "connectionString": "localhost:26100/protender",
     "apiUrl":  "http://localhost:3000/api",
     "secret": "Bertrand{Russell}"
 }
