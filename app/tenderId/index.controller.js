@@ -11,7 +11,7 @@
         vm.user = null;
         vm.post = {};
         vm.newQuestion = '';
-        vm.newMessage = {};
+        vm.newMessage = {dest:""};
 
         vm.deleteTender = deleteTender;
         vm.addToWatched = addToWatched;
@@ -58,7 +58,9 @@
         }
 
         function sendMessage(){
-            vm.newMessage.mailbox = vm.post.creator.mail;
+            console.log("hey"+vm.post.creator.id);
+            vm.newMessage.dest = vm.post.creator.id;
+            console.log(vm.newMessage);
             vm.newMessage.sender = vm.user.username;
             MessageService.SendMessage(vm.newMessage)
                 .then(function (result){

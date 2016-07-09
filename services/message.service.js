@@ -2,7 +2,7 @@
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(config.connectionString);
-var mailDB = db.get('mailbox');
+var mailDB = db.get('mailboxes');
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -20,10 +20,14 @@ service.delete = _delete;
 */
 module.exports = service;
 
-function postMessage(msg){
+function postMessage(msg, dest){
     var deferred = Q.defer();
-    console.log(JSON.stringify(msg));
-    mailDB.update({_id: msg.mailbox}, {$push:{
+    console.log("blear"+JSON.stringify(msg));
+    console.log("dear"+dest[0].mailbox);
+
+
+
+    mailDB.update({owner: dest[0].mailbox}, {$push:{
         inbox: {
             from: msg.username,
             sent_date: new Date(),
@@ -47,31 +51,23 @@ function postMessage(msg){
     return deferred.promise;
 }
 
-function getAllMessages(mailboxID, xaxl) {
+function getAllMessages(c) {
     var deferred = Q.defer();
-    console.log("Message Service - " + mailboxID);
-    mailDB.find({_id: mailboxID}, function (err, mailbox) {
+    console.log("Message Service - ");
+    console.log(c);
+    console.log(c.mailbox);
+    mailDB.find({owner: c.mailbox}, { fields : { "owner" : 0}}, function (err, mailbox) {
         if (err) {
             console.log("()error");
             deferred.reject(err);
         }
         if (mailbox) {
-            console.log(JSON.stringify(mailbox));
-            console.log(mailbox[0].pin);
-
-            if (mailbox[0].pin == xaxl) {
+            console.log("tharp:");
+        
+            var mb = mailbox[0];
+            deferred.resolve(mailbox);
                 
-                var newObj = {
-                    inbox:      mailbox[0].inbox,
-                    sentbox:    mailbox[0].sentbox
-                    
-                };
-                console.log("()success" + JSON.stringify(newObj));
-                deferred.resolve(newObj); 
-            } else {
-                console.log("Alert :: Unauthorised attempt to view mailbox");
-                deferred.reject("Not the correct user");
-            }
+                
             
         } else {
             // user not found

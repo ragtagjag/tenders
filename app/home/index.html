@@ -38,29 +38,16 @@ Hi {{vm.user.firstName}}<br><br>
               <b>Messages</b>
               <br>
             </div>
-            <table class="ddd table">
-              <thead>
-                <tr>
-                  <th width="15%">Time</th>
-                  <th>Subject</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>12:00</td>
-                  <td>New offer on F1 Track Tender</td>
-                </tr>
-                <tr>
-                  <td>Feb 1</td>
-                  <td>What's the pay for the Management support role?</td>
-                </tr>
-                <tr>
-                  <td>Jan 20</td>
-                  <td>I'm trying to find someone called Larry, can you search your database
-                    and send me his email?</td>
-                </tr>
-              </tbody>
-            </table>
+           <ul class="media-list">
+              <li ng-repeat="message in vm.mail.inbox | orderBy:'-date_created' | limitTo:3" class="media">
+                <div class="media-body">
+                  <h4 class="media-heading">{{message.title}}</h4>
+                  <span ng-if="(message.read=='false')" class="label label-primary">Unread</span><b>&nbsp;{{message.subject}}</b>&nbsp;| {{message.from}}</h4>
+                    <p>{{message.sent_date| date:'short'}}</p>
+                    <p>{{message.content}}</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

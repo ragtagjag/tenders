@@ -1,8 +1,9 @@
-﻿var config = require('config.json');
+var config = require('config.json');
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(config.connectionString);
 var usersDb = db.get('users');
+var mailboxes = db.get('mailboxes');
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -15,6 +16,9 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.getMailbox = _getMailbox;
+service.newMailbox = _newMailbox;
+
 
 module.exports = service;
 
@@ -49,7 +53,7 @@ function getById(_id) {
 
         if (user) {
             // return user (without hashed password)
-            deferred.resolve(_.omit(user, 'hash'));
+            deferred.resolve(_.omit(user, 'hash', 'signup'));
         } else {
             // user not found
             deferred.resolve();
@@ -88,9 +92,13 @@ function create(userParam) {
         user.tendersApplied = [];
         user.tendersOwned = [];
         user.tendersWatched = [];
-        user.mailboxes = [];
-        
+        //fix generator
+        user.mailbox = ("0" + Math.floor((Math.random() * 9999999) + 1000000));
+        _newMailbox(user.mailbox);
+        // create mailbox 
 
+        user.type = "act";
+        user.description = {};
         usersDb.insert(
             user,
             function (err, doc) {
@@ -171,3 +179,70 @@ function _delete(_id) {
 
     return deferred.promise;
 }
+
+function _newMailbox(su){
+    new_mailbox = {
+        'owner' : su,
+        'inbox' : [],
+        'sent'  : [],
+        'archive': []
+    }
+    mailboxes.insert(new_mailbox, function(err, res){
+       if (err) return;
+       // Object inserted successfully.
+       console.log(res);
+       console.log("this is whats being returned   "+res._id);
+       return res._id // this will return the id of object inserted
+    });
+}
+
+function _getMailbox(userId){
+    var deferred = Q.defer();
+    console.log("ho"+userId);
+    usersDb.find({_id:userId}, { fields : {
+        _id: 0,
+        firstName:false,
+        lastName:false,
+        username:false,
+        hash:false,
+        active:false,
+        tendersApplied:0,
+        tendersOwned:0,
+        tendersWatched:0,
+        type:0,
+        description:0,
+        companyName: 0, 
+        email: 0}},
+        function (err, doc){ 
+            console.log("mailfail"+err+doc);
+            if (err) {deferred.reject(err);console.log("oh nos"+err);}
+            deferred.resolve(doc);
+        });
+    return deferred.promise;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

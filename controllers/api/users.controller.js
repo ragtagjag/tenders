@@ -39,6 +39,7 @@ function registerUser(req, res) {
 }
 
 function getCurrentUser(req, res) {
+    console.log(req);
     userService.getById(req.user.sub)
         .then(function (user) {
             if (user) {

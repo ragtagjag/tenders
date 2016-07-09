@@ -5,7 +5,7 @@
         .module('app')
         .controller('Home.IndexController', Controller);
 
-    function Controller(UserService, PostService) {
+    function Controller(UserService, PostService, MessageService) {
         var vm = this;
 
         vm.user = null;
@@ -23,6 +23,10 @@
                 
                 console.log(JSON.stringify(posts));
                 vm.posts = posts;
+            });
+
+            MessageService.GetAll().then(function(mb) {
+                vm.mail = mb[0];
             });
         }
     }

@@ -20,13 +20,12 @@
         return service;
 
 
-        function GetAll(thisId, rp){
-            var newObj = {xaxl: rp};
-            return $http.post('/api/messages/' + thisId, newObj).then(handleSuccess, handleError);
+        function GetAll(){
+            return $http.post('/api/messages/').then(handleSuccess, handleError);
         }
         
         function SendMessage(msg){
-            console.log(JSON.stringify(msg));
+            console.log("l"+JSON.stringify(msg));
             return $http.post('/api/messages/send', msg).then(handleSuccess, handleError);
         }
 
