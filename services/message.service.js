@@ -7,6 +7,7 @@ var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
+var winston = require('Winston');
 
 var service = {};
 
@@ -24,7 +25,7 @@ function postMessage(msg, dest){
     var deferred = Q.defer();
     console.log("blear"+JSON.stringify(msg));
     console.log("dear"+dest[0].mailbox);
-
+    winston.info('First Log');
 
 
     mailDB.update({owner: dest[0].mailbox}, {$push:{
