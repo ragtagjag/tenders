@@ -20,8 +20,6 @@
             });
             
             PostService.GetAll().then(function (posts) {
-                console.log("hey there yo");
-                console.log(JSON.stringify(posts));
                 vm.posts = posts;
             });
         }

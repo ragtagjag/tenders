@@ -7,7 +7,8 @@ var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
-var winston = require('Winston');
+var Logger = require('le_node');
+var logger = new Logger({ token: config.log });
 
 var service = {};
 
@@ -23,9 +24,8 @@ module.exports = service;
 
 function postMessage(msg, dest){
     var deferred = Q.defer();
-    console.log("blear"+JSON.stringify(msg));
-    console.log("dear"+dest[0].mailbox);
-    winston.info('First Log');
+    // log event
+    logger.info("MSGSERV New Message from user " + msg.sender + " to " + dest[0].mailbox + "");
 
 
     mailDB.update({owner: dest[0].mailbox}, {$push:{
@@ -44,8 +44,6 @@ function postMessage(msg, dest){
            
             deferred.resolve(doc);
         } else {
-            
-            console.log("fail");
             deferred.reject();
         }
     });
@@ -54,17 +52,13 @@ function postMessage(msg, dest){
 
 function getAllMessages(c) {
     var deferred = Q.defer();
-    console.log("Message Service - ");
-    console.log(c);
-    console.log(c.mailbox);
+    logger.info("MSGSERV - Retrieving all messages for " + c.mailbox)
     mailDB.find({owner: c.mailbox}, { fields : { "owner" : 0}}, function (err, mailbox) {
         if (err) {
             console.log("()error");
             deferred.reject(err);
         }
         if (mailbox) {
-            console.log("tharp:");
-        
             var mb = mailbox[0];
             deferred.resolve(mailbox);
                 
@@ -72,7 +66,6 @@ function getAllMessages(c) {
             
         } else {
             // user not found
-            console.log("()fail");
             deferred.resolve();
         }
     });

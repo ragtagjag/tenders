@@ -8,6 +8,8 @@ var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
+var Logger = require('le_node');
+var logger = new Logger({ token: config.log });
 
 var service = {};
 
@@ -24,7 +26,8 @@ module.exports = service;
 
 function authenticate(username, password) {
     var deferred = Q.defer();
-
+    logger.info("USRSERV - Log in attempt for username"+username);
+    
     usersDb.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err);
 
@@ -39,6 +42,7 @@ function authenticate(username, password) {
         } else {
             // authentication failed
             deferred.resolve();
+            logger.warning("USRSERV - Log in attempt failed for username"+username);
         }
     });
 
@@ -76,6 +80,7 @@ function create(userParam) {
                 // username already exists
                 deferred.reject('Username "' + userParam.username + '" is already taken');
             } else {
+                logger.info("USRSERV - Creating new user for "+userParam.username);
                 createUser();
             }
         });
@@ -139,6 +144,7 @@ function update(_id, userParam) {
 
     function updateUser() {
         // fields to update
+        logger.info("USRSERV - Updating user details for "+userParam.username);
         var set = {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
@@ -190,15 +196,14 @@ function _newMailbox(su){
     mailboxes.insert(new_mailbox, function(err, res){
        if (err) return;
        // Object inserted successfully.
-       console.log(res);
-       console.log("this is whats being returned   "+res._id);
-       return res._id // this will return the id of object inserted
+       console.log("turkel"+res);
+       return res // this will return the id of object inserted
     });
 }
 
 function _getMailbox(userId){
     var deferred = Q.defer();
-    console.log("ho"+userId);
+    logger.info("USRSERV - Unencrypting mailbox for"+userId);
     usersDb.find({_id:userId}, { fields : {
         _id: 0,
         firstName:false,
@@ -214,8 +219,7 @@ function _getMailbox(userId){
         companyName: 0, 
         email: 0}},
         function (err, doc){ 
-            console.log("mailfail"+err+doc);
-            if (err) {deferred.reject(err);console.log("oh nos"+err);}
+            if (err) {deferred.reject(err);}
             deferred.resolve(doc);
         });
     return deferred.promise;

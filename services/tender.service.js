@@ -7,6 +7,8 @@ var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
+var Logger = require('le_node');
+var logger = new Logger({ token: config.log });
 
 var service = {};
 
@@ -24,18 +26,15 @@ module.exports = service;
 
 function getByTitle(title) {
     var deferred = Q.defer();
-    console.log("Tender Exp Service - " + title);
     tendersDb.find({title: title}, function (err, post) {
         if (err) deferred.reject(err);
 
         if (post) {
-            // return user (without hashed password)
-            console.log("success");
-            console.log(post);
+            logger.info("TSERV - Retrieving post by title");
             deferred.resolve(post);
         } else {
             // user not found
-            console.log("fail");
+            logger.error("TSERV - No user found :O");
             deferred.resolve();
         }
     });
@@ -53,7 +52,7 @@ function getAllPosts() {
             deferred.resolve(posts);
         } else {
             // no posts found
-            console.log("fail");
+            logger.error("TSERV - No posts found :O");
             deferred.resolve();
         }
     });

@@ -17,7 +17,6 @@ router.post('/addQuestion/:id', addQuestion);
 module.exports = router;
 
 function getAll(req, res){
-    console.log("have i got here??");
     tenderService.getAllPosts()
         .then(function (posts) {
             if (posts) {
@@ -32,7 +31,6 @@ function getAll(req, res){
 }
 
 function getTender(req, res) {
-    console.log("********************************************TITLE  "+req.params.id); 
     tenderService.getByTitle(req.params.id)
         .then(function (title) {
             if (title) {
@@ -47,9 +45,6 @@ function getTender(req, res) {
 }
 
 function createTender(req, res) {
-    console.log("I have started the createTender func...");
-    console.log(req.body);
-    console.log("USER :::: "+req.body.user);
     tenderService.createTender(req.body)
         .then(function (){
             // do something here 

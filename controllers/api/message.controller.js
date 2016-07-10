@@ -3,7 +3,8 @@ var express = require('express');
 var router = express.Router();
 var messageService = require('services/message.service');
 var userService = require('services/user.service');
-
+var Logger = require('le_node');
+var logger = new Logger({ token: config.log });
 //middleware
 
 
@@ -16,7 +17,7 @@ module.exports = router;
 
 function getAllMessages(req, res){
     
-    console.log("Looking for new mail | "+req.user.sub);
+    logger.info("MSGAPI - Get all for user " +req.user.sub);
 
     userService.getMailbox(req.user.sub)
         .then(function (doc){
@@ -24,8 +25,6 @@ function getAllMessages(req, res){
                     messageService.getAllMessages(doc[0])
                         .then(function (doc){
                             if (doc) {
-                                    console.log("well?"+doc);
-                                    console.log(doc);
                                     res.send(doc);     
                                 } else {
                                     res.sendStatus(401);
@@ -44,22 +43,10 @@ function getAllMessages(req, res){
                 res.status(404).send(err);
         });
     res.status(200);
-
-    // messageService.getAllMessages(req.params.id, req.body.xaxl)
-    //     .then(function (mailbox) {
-    //         if (mailbox) {
-    //             res.send(mailbox);
-    //         } else {
-    //             res.sendStatus(401);
-    //         }
-    //     })
-    //     .catch(function (err) {
-    //         res.status(403).send(err);
-    //     });
 }
 
 function sendMessage(req, res){
-    console.log("this here"+JSON.stringify(req.body))
+    logger.info("MSGAPI - Sending new message for user " +req.user.sub);
 
     userService.getMailbox(req.body.dest)
         .then(function (mid) {

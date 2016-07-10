@@ -1,5 +1,6 @@
 ﻿{
     "connectionString": "localhost:26100/protender",
     "apiUrl":  "http://localhost:3000/api",
-    "secret": "Bertrand{Russell}"
+    "secret": "Bertrand{Russell}",
+    "log" : "fcd34d73-96be-47e8-a32f-e8e94f524550"
 }

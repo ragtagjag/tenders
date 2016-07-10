@@ -21,7 +21,6 @@ Hi {{vm.user.firstName}}<br><br>
           <div class="col-md-4">
             <div class="alert alert-dismissable alert-warning">
               <b>Watched</b>
-              {{vm.user.tenderWatched}}
               <br>
             </div>
             <ul class="media-list">
@@ -50,5 +49,36 @@ Hi {{vm.user.firstName}}<br><br>
             </ul>
           </div>
         </div>
+      </div>
+
+       <!-- Bands and Venues -->
+      <div class="row">
+          <div class="col-md-4">
+            <div class="alert alert-dismissable alert-success">
+              <b>Venues</b>
+              <br>
+            </div>
+            <ul class="media-list">
+              <li ng-repeat="post in vm.venues| limitTo:3" class="media">
+                <div class="media-body">
+                  <h4 class="media-heading">{{post.venueName}}</h4>
+                  <p>{{post.venueDescLong}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="alert alert-dismissable alert-warning">
+              <b>Acts</b>
+              <br>
+            </div>
+            <ul class="media-list">
+              <li ng-repeat="post in vm.acts " class="media">
+                <div class="media-body">
+                  <h4 class="media-heading">{{post.actName}}</h4>
+                  <p>{{post.actDescLong}}</p>
+              </li>
+            </ul>
+          </div>
       </div>
     </div>
