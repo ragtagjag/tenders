@@ -1,30 +1,60 @@
 ﻿<%- include('partials/header') %>
-<div class="form-container">
-    <h2>Register</h2>
-    <% if(locals.error) { %>
-        <div class="alert alert-danger"><%= error %></div>
-    <% } %>
-    <form method="post">
-        <div class="form-group">
-            <label for="firstName">First name</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
+    
+    <div class="fh5co-cta" style="background-image: url(images/slide_2.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="col-md-12 text-center animate-box">
+                <h3>We Try To Update The Site Everyday</h3>
+                <p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input type="text" name="lastName" id="lastName" class="form-control" value="<%= locals.lastName || '' %>" required />
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" value="<%= locals.username || '' %>" required />
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
-            <a href="/login" class="btn btn-link">Cancel</a>
-        </div>
-    </form>
-</div>
+    </div>
+
+    <div class="fh5co-contact animate-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-md-push-2 animate-box">
+                    <h2>Register</h2>
+                    <p>We will contact you to confirm.</p><br><br>
+
+                </div>
+                <div class="col-md-3">
+                    <h3>Contact Info.</h3>
+                    <ul class="contact-info">
+                        <li><i class="icon-map"></i>198 West 21th Street, Suite 721 New York NY 10016</li>
+                        <li><i class="icon-phone"></i>+ 1235 2355 98</li>
+                        <li><i class="icon-envelope"></i><a href="#">info@yoursite.com</a></li>
+                        <li><i class="icon-globe"></i><a href="#">www.yoursite.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+                    <div class="row">
+                        <form method="post">
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" name="lastName" id="lastName" class="form-control" value="<%= locals.lastName || '' %>" required />
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" value="<%= locals.username || '' %>" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <a href="/login" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+
 <%- include('partials/footer') %>

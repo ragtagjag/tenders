@@ -16,20 +16,25 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     // authenticate using api to maintain clean separation between layers
+    console.log("starting");
+    console.log(req.body);
     request.post({
         url: config.apiUrl + '/users/authenticate',
         form: req.body,
         json: true
     }, function (error, response, body) {
         if (error) {
+            console.log("error");
             return res.render('login', { error: 'An error occurred' });
         }
 
         if (!body.token) {
+            console.log("incorrect");
             return res.render('login', { error: 'Username or password is incorrect', username: req.body.username });
         }
 
         // save JWT token in the session to make it available to the angular app
+        console.log("success");
         req.session.token = body.token;
 
         // redirect to returnUrl
