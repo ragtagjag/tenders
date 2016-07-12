@@ -29,8 +29,7 @@ function authenticate(username, password) {
     logger.info("USRSERV - Log in attempt for username"+username);
     
     usersDb.findOne({ username: username }, function (err, user) {
-        if (err) deferred.reject(err);
-
+        if (err){console.log("err"+err); deferred.reject(err);}
         if (user && !user.active) {
             deferred.reject("User inactive, please complete signup process via email");
             return deferred.promise;

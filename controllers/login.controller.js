@@ -30,6 +30,7 @@ router.post('/', function (req, res) {
 
         if (!body.token) {
             console.log("incorrect");
+            console.log(response.body);
             return res.render('login', { error: 'Username or password is incorrect', username: req.body.username });
         }
 
